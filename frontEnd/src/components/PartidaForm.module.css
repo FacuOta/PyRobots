@@ -1,0 +1,30 @@
+.PartidaForm{
+    width: 700px;
+    padding: 5px;
+    height: 700px;
+    margin: auto;
+    margin-top: 20px;
+    display: grid;
+    grid-column: span 3;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background-color:rgb(236, 236, 236);
+    box-shadow: 4px 6px 17px 0px rgba(0,0,0,0.52);
+    text-align: center;
+}
+
+.breaks{
+    content:"\n";
+    white-space: pre;
+}
+
+.titulo {
+font-size: 70px;
+font-weight: 600;
+background-image: linear-gradient(to left, #FFB703, #FB8500);
+color: transparent;
+background-clip: text;
+-webkit-background-clip: text;
+}

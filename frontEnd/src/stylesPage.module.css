@@ -1,0 +1,7 @@
+html, body{
+    background: #023047;
+    margin: 0;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    background-image:linear-gradient(to right top, #023047, rgb(30, 37, 65), #070d22, #181818, #000000);
+}

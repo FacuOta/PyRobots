@@ -1,0 +1,33 @@
+.login{
+  background-color: whitesmoke;
+  padding: 1.25em 1.25em;
+  margin: 5em auto;
+  border-radius: 0.625em;
+  width: 50%;
+  text-align: center;
+}
+
+.loginFields {
+  display: grid;
+  row-gap: 0.625em;
+  margin-bottom: 1.875em;
+}
+
+.loginUser, .loginPassword{
+  background-color: whitesmoke;
+  border-radius: 0.313em;
+  margin: auto;
+}
+
+
+.loginError {
+  color: rgba(255, 37, 37, 0.863);
+}
+
+.form {
+  margin-bottom: 1.875em;
+}
+
+.loginButton{
+  margin: 10px;
+}

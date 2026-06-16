@@ -1,0 +1,10 @@
+Coverage: pip install coverage
+
+Correr coverage: coverage run -m pytest ...
+Esto genera un archivo
+
+Ver archivo en terminal: coverage report -m
+Muestra reporte en terminal
+
+Mostrar resultados más bonito: coverage html && open htmlcov/index.html
+Usar xdg-open en Linux en lugar de open

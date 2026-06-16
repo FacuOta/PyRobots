@@ -1,0 +1,32 @@
+.form {
+    width: 75%;
+    max-width: 400px;
+    height: 450px;
+    margin: 75px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding-bottom: 15px;
+    background-color:rgb(241, 241, 241);
+    box-shadow: 4px 6px 17px 0px rgba(0,0,0,0.52);
+  }
+  
+.bbutton{
+    width: 50%;
+    background-color: green;
+  }
+
+  .text{
+    width: 60%;
+  }
+  .separar{
+    margin: 20px;
+  }
+
+  .icono{
+    background-color:rgb(71, 83, 90);
+    
+  }
+

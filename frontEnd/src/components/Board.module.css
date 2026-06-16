@@ -1,0 +1,33 @@
+.board{
+  background-color: #023047;
+  border: 4px solid #8ECAE6;
+  outline: 4px solid #FB8500;
+  width: 100%;
+  height: 100%;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 90%;
+  height: 90%;
+}
+
+.statuses{
+  background-color: #8ECAE6;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: 4px solid #023047;
+  border: 6px solid #FB8500;
+}
+
+.statuses > *{
+  background-color: #023047;
+  border: 4px black solid;
+  margin: auto;
+}

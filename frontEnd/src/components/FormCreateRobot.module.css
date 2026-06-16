@@ -1,0 +1,23 @@
+.formRobot{
+    width: 75%;
+    max-width: 400px;
+    height: 550px;
+    margin: auto;
+    display: flex;
+    padding: 7px;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border-radius: 15px;
+    background-color:rgb(241, 241, 241);
+    box-shadow: 4px 6px 17px 0px rgba(0,0,0,0.52);
+}
+
+.NombreRobot{
+    position: relative
+
+}
+
+.body {
+    
+}

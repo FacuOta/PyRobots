@@ -1,0 +1,50 @@
+.confettiholder{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -9999;
+  }
+
+.winnerPage{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.winnerDiv{
+    width: auto;
+    height: auto;
+    color: aliceblue;
+    font-size: 5vh;
+    text-align: center;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.winner {
+    color: gold;
+    font-weight: bold;
+    background-image: linear-gradient(
+	to right,
+	#462523 0,
+    #cb9b51 10%, 
+	#f6e27a 45%,
+	#f6f2c0 50%,
+	#f6e27a 55%,
+	#cb9b51 68%,
+	#462523 100%
+	);
+   color:transparent;
+   -webkit-background-clip:text;
+}

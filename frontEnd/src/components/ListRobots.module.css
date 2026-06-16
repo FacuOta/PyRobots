@@ -1,0 +1,29 @@
+.list {
+    padding: 1.25em 1.25em;
+    margin: 5em;
+    width: 90%;
+
+}
+
+.listButtonRigth{
+    border: 3px solid white;
+    border-radius: 15px;
+    float: right;
+    margin-bottom: 5px;
+    right: 0%;
+}
+
+.listButtonLeft{
+    border: 3px solid white;
+    border-radius: 15px;
+    margin-bottom: 5;
+    float: left;
+}
+
+.table {
+    border-radius: 0.625em;
+}
+
+.tableHead {
+    background-color: #FB8500;
+}
