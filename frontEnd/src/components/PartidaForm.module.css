@@ -5,6 +5,7 @@
     box-sizing: border-box;
     margin: auto;
     display: grid;
+    row-gap: 22px;
     grid-column: span 3;
     flex-direction: column;
     justify-content: center;
@@ -16,8 +17,7 @@
 }
 
 .breaks{
-    content:"\n";
-    white-space: pre;
+    display: none;
 }
 
 .titulo {
