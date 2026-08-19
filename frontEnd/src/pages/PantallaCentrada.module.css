@@ -1,0 +1,12 @@
+/* Centra vertical y horizontalmente el contenido de una pantalla.
+   El padding evita que la tarjeta quede pegada a los bordes en pantallas
+   bajas, y min-height usa el alto de la ventana para el centrado. */
+.pantalla {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  box-sizing: border-box;
+}

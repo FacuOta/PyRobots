@@ -160,10 +160,9 @@ function MatchsList() {
             {alertContent}
             </Alert> : <></>
       }
-      <Stack direction="row">
+      <Stack direction="row" flexWrap="wrap" gap={1} sx={{ mb: 1 }}>
         <Button
           variant="contained"
-          sx = {{mb: 1, right: 0}}
           endIcon={<RefreshIcon />}
           onClick={getMatchs}
         >
@@ -171,7 +170,6 @@ function MatchsList() {
         </Button>
         <Button
           variant="contained"
-          sx={{mb: 1, ml:3}}
           endIcon={<AddIcon />}
           onClick={handleCreate}
         >
@@ -180,6 +178,7 @@ function MatchsList() {
         <FilterPartidas setFiltro={setFilter} filtro={filter} />
       </Stack>
 
+      <div className={styles.tableWrapper}>
       <TableContainer className={styles.table} component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead className= {styles.tableHead}>
@@ -253,6 +252,7 @@ function MatchsList() {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </div>
   )
 }

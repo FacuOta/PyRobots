@@ -118,23 +118,6 @@ export function HomePage() {
           PYROBOTS
         </h1>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          marginTop: "50px",
-          color: "#ffff",
-        }}
-      >
-        <span>Francisco Cortez</span>
-        <span>Lucas Cordoba</span>
-        <span>Agustin Ardizzone</span>
-        <span>Facundo Granado</span>
-        <span>Francisco Ferrante</span>
-        <span>Juan Cortez</span>
-        <span>Facundo Otamendi</span>
-      </div>
     </div>
   );
 }

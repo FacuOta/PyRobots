@@ -1,23 +1,35 @@
 .list {
-    padding: 1.25em 1.25em;
-    margin: 5em;
-    width: 90%;
-    
+    padding: 1.25em;
+    margin: 2em auto;
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+}
+
+/* Los botones se acomodan en fila y bajan solos cuando no entran, en vez de
+   superponerse como pasaba con float. */
+.listAcciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+/* La tabla scrollea sola si no entra, sin desbordar la pagina. */
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
 }
 
 .listButtonRigth{
     border: 3px solid white;
     border-radius: 15px;
-    float: right;
-    margin-bottom: 5px;
-    right: 0%;
 }
 
 .listButtonLeft{
     border: 3px solid white;
     border-radius: 15px;
-    margin-bottom: 5;
-    float: left;
 }
 
 .table {

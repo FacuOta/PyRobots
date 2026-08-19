@@ -1,7 +1,12 @@
 .rules{
     color: #ffffff;
+    margin: 4px 0;
     font-family: 'Lato', sans-serif;
     font-size: 12px;
     font-weight: 300;
     text-align: center;
+}
+/* Separa el bloque de reglas de la tarjeta de registro. */
+.rules:first-of-type {
+    margin-top: 28px;
 }

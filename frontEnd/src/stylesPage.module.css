@@ -1,7 +1,16 @@
-html, body{
-    background: #023047;
+html{
+    min-height: 100%;
+}
+
+body{
     margin: 0;
-    height: 100%;
+    min-height: 100vh;
     font-family: 'Lato', sans-serif;
-    background-image:linear-gradient(to right top, #023047, rgb(30, 37, 65), #070d22, #181818, #000000);
+    /* El degradado tiene que cubrir todo el documento, no solo la ventana.
+       Antes html y body tenian `height: 100%`, que los recorta al alto del
+       viewport: apenas la pagina crecia, abajo quedaba una franja negra. */
+    background-color: #000000;
+    background-image: linear-gradient(to right top, #023047, rgb(30, 37, 65), #070d22, #181818, #000000);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }

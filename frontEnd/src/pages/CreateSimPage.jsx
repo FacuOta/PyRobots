@@ -2,10 +2,11 @@ import React from "react";
 import PartidaForm from "../components/PartidaForm.js";
 import Button from "@mui/material/Button";
 import SimForm from "../components/SimForm.jsx";
+import centrado from "./PantallaCentrada.module.css";
 
 function CreateSimPage() {
   return (
-    <div>
+    <div className={centrado.pantalla}>
       <SimForm />
       <br />
       <a href="/home">

@@ -1,9 +1,10 @@
 import { FormRobot } from "../components/FormCreateRobot";
 import Button from "@mui/material/Button";
+import centrado from "./PantallaCentrada.module.css";
 
 export function CreateRobot() {
   return (
-    <div>
+    <div className={centrado.pantalla}>
       <FormRobot></FormRobot>
       <a href="/home">
         {" "}
