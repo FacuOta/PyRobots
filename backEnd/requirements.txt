@@ -1,6 +1,10 @@
 fastapi[all]
 uvicorn[standard]
 passlib[bcrypt]
+# bcrypt fijo: passlib 1.7.4 rompe con bcrypt >= 4.1. En su rutina interna de
+# deteccion de bugs le pasa una clave de mas de 72 bytes, y las versiones nuevas
+# lanzan ValueError en vez de truncar. Sintoma: 500 en todo registro y login.
+bcrypt==4.0.1
 requests
 python-multipart
 pony==0.7.16
