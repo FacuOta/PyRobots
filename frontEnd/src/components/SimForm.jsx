@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -43,12 +44,12 @@ import { useNavigate } from "react-router-dom";
         return data;
     }
     
-    const url = "http://127.0.0.1:8000/simulacion/";
+    const url = `${API}/simulacion/`;
 
     function getRobots(){
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/get_robots/',
+            url: `${API}/get_robots/`,
             headers: { 'Authorization': `Bearer ${token}` },
           }
         )

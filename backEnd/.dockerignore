@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+tests/
+database.db
+user_avatars/
+robot_avatars/
+robot_files/

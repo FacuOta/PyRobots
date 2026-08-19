@@ -2,9 +2,7 @@ from fastapi import HTTPException
 from http import HTTPStatus
 from passlib.context import CryptContext
 import jwt
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from settings import WS_BASE
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 JWT_SECRET = 'TWtIfiNR1jvIJ1vc'
@@ -60,31 +58,7 @@ def incorrect_username_password():
 def no_user(username):
     raise HTTPException(status_code = HTTPStatus.NOT_FOUND, detail = f"No username by {username}")
 
-def user_not_verified():
-    raise HTTPException(status_code = HTTPStatus.UNAUTHORIZED, detail = "User has not verified its email adress")
 
-def send_email(mail_usuario, codigo_verificacion):
-    cuerpo = '''Gracias por registrarte en PyRobots!'''
-    html = ' <p> <b> Su numero de verificacion es: </b>'  + str(codigo_verificacion) + '</p>'
-
-    correo_organizacion = 'transformers.pyrobots@gmail.com'
-    contra_organizacion = 'sdolbmmlzukxwnwo'
-
-
-    message = MIMEMultipart()
-    message['From'] = correo_organizacion
-    message['To'] = mail_usuario
-    message['Subject'] = 'Correo de verificacion'
-
-    message.attach(MIMEText(cuerpo, 'plain'))
-    message.attach(MIMEText(html, 'html'))
-
-    session = smtplib.SMTP('smtp.gmail.com', 587)
-    session.starttls()
-    session.login(correo_organizacion, contra_organizacion)
-    text = message.as_string()
-    session.sendmail(correo_organizacion, mail_usuario, text)
-    session.quit()
 
 def get_websocket_address(partida_id):
-    return "ws://localhost:8000/lobbys/" + str(partida_id)
+    return WS_BASE + "/lobbys/" + str(partida_id)

@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React, { useEffect } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -24,7 +25,7 @@ function ListRobots(){
   
       axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/get_robots/',
+        url: `${API}/get_robots/`,
         headers: { 'Authorization': `Bearer ${token}` },
       }
       )
@@ -40,7 +41,7 @@ function ListRobots(){
   
       axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/images',
+        url: `${API}/images`,
         headers: { 'Authorization': `Bearer ${token}` },
       }
       )
@@ -56,7 +57,7 @@ function ListRobots(){
       console.log(images.length);
       for (let i = 0; i < images.length; i++) {
         if (robotName === images[i].robotname){
-          return ("http://127.0.0.1:8000" + images[i].path);
+          return (`${API}` + images[i].path);
         }
       }
     }

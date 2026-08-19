@@ -1,0 +1,59 @@
+name: Deploy frontend a GitHub Pages
+
+# Publica frontEnd/ como sitio estático. El backend vive aparte, en Render, y su
+# URL entra en el build por REACT_APP_API.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontEnd
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm ci
+
+      # CI=false: los warnings de eslint no deben tumbar el build.
+      - name: Compilar
+        env:
+          REACT_APP_API: https://pyrobots.onrender.com
+          CI: "false"
+        run: npm run build
+
+      # Pages sirve archivos, no rutas: sin esto, entrar directo a /register da
+      # 404. Copiar index.html a 404.html deja que el router resuelva la ruta.
+      - name: Fallback para rutas del SPA
+        run: cp build/index.html build/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontEnd/build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

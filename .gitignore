@@ -36,3 +36,9 @@ backEnd/robot_avatars/*
 !backEnd/robot_avatars/.gitkeep
 backEnd/robot_files/*
 !backEnd/robot_files/.gitkeep
+# Datos generados en tiempo de ejecucion
+backEnd/database.db
+backEnd/user_avatars/
+backEnd/robot_avatars/
+backEnd/robot_files/
+frontEnd/build/

@@ -9,20 +9,23 @@ from helper_functions import *
 from pydantic_models import InfoPartida, JSONListPartida, JSONListStrings, MatchResult
 from fastapi.staticfiles import StaticFiles
 from websocketManager import WebSocketManager
+from settings import ORIGENES, preparar_carpetas, ruta
 from game_logic import calculate_match
 
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.mount("/robot_avatars", StaticFiles(directory="../robot_avatars"), name="robot_avatars")
-app.mount("/user_avatars", StaticFiles(directory="../user_avatars"), name="user_avatars")
+# Las carpetas se crean antes de montarlas: StaticFiles falla si no existen, y
+# en el Space /tmp arranca vacío.
+preparar_carpetas()
+
+app.mount("/robot_avatars", StaticFiles(directory=ruta("robot_avatars")), name="robot_avatars")
+app.mount("/user_avatars", StaticFiles(directory=ruta("user_avatars")), name="user_avatars")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl = "login/")
 
-origins = [
-    "http://localhost:3000"
-]
+origins = ORIGENES
 
 app.add_middleware(
     CORSMiddleware,
@@ -66,7 +69,7 @@ async def create_user(username: str = Form(), email: str = Form(), password: str
         if avatar and not testing:
             script_dir = os.path.dirname(__file__)
             # Reemplaza el nombre del archivo por el username, mantiene la extension
-            rel_path = '../user_avatars/' + username + os.path.splitext(avatar.filename)[1]
+            rel_path = ruta('user_avatars', username + os.path.splitext(avatar.filename)[1])
             abs_file_path = os.path.join(script_dir, rel_path)
             contents = await avatar.read()
             f = open(abs_file_path, "wb")
@@ -86,8 +89,6 @@ async def login_user(username: str = Form(), password: str = Form()):
     if not user:
         incorrect_username_password()
 
-    if not (get_user(username).is_verified):
-        user_not_verified()
 
     token = create_access_token(data =
         {"username" : user.username, "email" : user.email}
@@ -139,14 +140,14 @@ async def create_robot(robotCode: UploadFile, robotName: str = Form(),
         if not testing:
             script_dir = os.path.dirname(__file__)
             if robotAvatar:
-                rel_path = '../robot_avatars/' + current_user + '_' + robotName + os.path.splitext(robotAvatar.filename)[1]
+                rel_path = ruta('robot_avatars', current_user + '_' + robotName + os.path.splitext(robotAvatar.filename)[1])
                 abs_file_path = os.path.join(script_dir, rel_path)
                 contents = await robotAvatar.read()
                 f = open(abs_file_path, "wb")
                 f.write(contents)
                 f.close()
 
-            rel_path = '../robot_files/' + current_user + '_' + robotName + os.path.splitext(robotCode.filename)[1]
+            rel_path = ruta('robot_files', current_user + '_' + robotName + os.path.splitext(robotCode.filename)[1])
             abs_file_path = os.path.join(script_dir, rel_path)
             contents = await robotCode.read()
             g = open(abs_file_path, "wb")
@@ -232,41 +233,10 @@ async def leave_match(match_name : str = Form(), current_user : str = Depends(ge
     return {"detail" : "Left the match successfully"}
 
 
-@app.post("/send_verif_email/")
-async def send_verif_email(username : str = Form()):
-
-    current_user = get_user(username)
-    
-    if not current_user:
-        raise HTTPException(status_code= HTTPStatus.BAD_REQUEST, detail="Usuario no existe")
-
-    if(current_user.is_verified == True):
-        raise HTTPException(status_code= HTTPStatus.UNAUTHORIZED, detail="Usuario ya confirmado")
-
-    send_email(current_user.email,current_user.verif_code)
-    raise HTTPException(status_code= HTTPStatus.OK, detail="Email enviado correctamente")
-
-
-@app.post("/verify_user/")
-async def verify_user(username : str = Form(), verification_code : int = Form()):
-    current_user = get_user(username)
-
-    if not current_user:
-        raise HTTPException(status_code= HTTPStatus.BAD_REQUEST, detail="Usuario no existe")
-    if(current_user.is_verified):
-        raise HTTPException(status_code=401, detail="Usuario ya confirmado")
-    
-    if(current_user.verif_code != verification_code):
-        raise HTTPException(status_code=401, detail="Codigo de verificacion incorrecto")
-    
-    confirm_user(username)
-    raise HTTPException(status_code= HTTPStatus.OK, detail="Usuario confirmado correctamente")
-    
-
 @app.get("/images", status_code= HTTPStatus.OK)
 def images(current_user: str = Depends(get_current_user)):
     lista = []
-    for filename in os.listdir("../robot_avatars"):
+    for filename in os.listdir(ruta("robot_avatars")):
         if not filename.startswith('.'):
             fullname = filename.split(".")[0]
             username, robotname = fullname.split("_")
@@ -362,7 +332,7 @@ async def websocket_endpoint(websocket: WebSocket, lobby_id: int):
 @app.get("/users/avatar")
 def images(username: str, current_user: User = Depends(get_current_user)):
 
-    for filename in os.listdir("../user_avatars"):
+    for filename in os.listdir(ruta("user_avatars")):
         if not filename.startswith('.'):
             name = filename.split(".")[0]
             if name == username:

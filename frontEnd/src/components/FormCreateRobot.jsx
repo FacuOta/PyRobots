@@ -1,3 +1,4 @@
+import { API } from "../api";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
@@ -47,7 +48,7 @@ export function FormRobot() {
   const sendData = () => {
     var formData = new FormData();
 
-    const url = "http://127.0.0.1:8000/robot/";
+    const url = `${API}/robot/`;
     formData.append("robotCode", FileSelected);
     formData.append("robotName", UserSelected);
     if (ImageSelected !== null) {

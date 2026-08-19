@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -29,8 +30,8 @@ function MatchsList() {
   const navigate = useNavigate();
 
   const headersStyle = {fontWeight:'bold'}
-  const urlUnirse = 'http://127.0.0.1:8000/partida/unirse/'
-  var urlInfoPartida = 'http://127.0.0.1:8000/partida/'
+  const urlUnirse = `${API}/partida/unirse/`
+  var urlInfoPartida = `${API}/partida/`
   var urlResultado = '/results/';
 
   function handleCreate() {
@@ -43,8 +44,8 @@ function MatchsList() {
     axios({
       method: 'get',
       url: filter === "noTerminadas" ?
-        'http://127.0.0.1:8000/partida/list' :
-        'http://127.0.0.1:8000/partida/list_ended'
+        `${API}/partida/list` :
+        `${API}/partida/list_ended`
       ,
       headers: { 'Authorization': `Bearer ${token}` },
     })

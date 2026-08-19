@@ -5,7 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { CreateRobot } from "./pages/CreateRobot";
 import PartidaFormPage from "./pages/PartidaFormPage";
 import SimulationPage from "./pages/SimulationPage";
-import VerificationPage from "./pages/VerificationPage";
+
 import "./stylesPage.module.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ListRobotsPage from "./pages/ListRobotsPage";
@@ -15,7 +15,7 @@ import LobbyPage from "./pages/LobbyPage";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/home" element={ <HomePage></HomePage> }></Route>
         <Route path="/" element={<LoginPage></LoginPage> }></Route>
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/robot" element={ <CreateRobot></CreateRobot> }></Route>
         <Route path="/listrobots" element={ <ListRobotsPage></ListRobotsPage> }></Route>
         <Route path="/creategame" element={ <PartidaFormPage></PartidaFormPage> }></Route>
-        <Route path="/verification" element={<VerificationPage />}> </Route>
+
         <Route path="/results/:id" component={MatchResults} element={<MatchResults />}></Route>
         <Route path="/lobby" element={<LobbyPage />}> </Route>
       </Routes>

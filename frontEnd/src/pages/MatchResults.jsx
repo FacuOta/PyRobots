@@ -1,3 +1,4 @@
+import { API } from "../api";
 import Button from '@mui/material/Button';
 import axios from "axios";
 import { useEffect } from 'react';
@@ -23,7 +24,7 @@ function MatchResults() {
     const getResults = () =>{
         axios({
             method: "get",
-            url: `http://127.0.0.1:8000/partida/${id}/resultados`,
+            url: `${API}/partida/${id}/resultados`,
             headers: { 'Authorization': `Bearer ${token}` }
         })
             .then((response) => {

@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -24,7 +25,7 @@ import {
     
     const navigate = useNavigate();
 
-    const url = "http://127.0.0.1:8000/crear_partida/";
+    const url = `${API}/crear_partida/`;
     var bodyFormData = new FormData();
 
     bodyFormData.append("nombre_partida", partida.nombre_partida);

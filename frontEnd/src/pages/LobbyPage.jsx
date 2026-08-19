@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -76,7 +77,7 @@ const LobbyPage = () => {
 
   // Datos de la partida para cada usuario
   function obtenerDatosGenerales() {
-    let urlpartida = "http://127.0.0.1:8000/partida/" + match_id;
+    let urlpartida = `${API}/partida/` + match_id;
     axios({
       method: "get",
       url: urlpartida,
@@ -106,7 +107,7 @@ const LobbyPage = () => {
         bodyFormData.append("current_user", token);
         axios({
           method: "put",
-          url: "http://127.0.0.1:8000/partida/abandonar/",
+          url: `${API}/partida/abandonar/`,
           data: bodyFormData,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -136,7 +137,7 @@ const LobbyPage = () => {
         bodyFormData.append("creator_robot", robot);
         axios({
           method: "put",
-          url: "http://127.0.0.1:8000/partida/iniciar_partida",
+          url: `${API}/partida/iniciar_partida`,
           data: bodyFormData,
           headers: {
             Authorization: `Bearer ${token}`,

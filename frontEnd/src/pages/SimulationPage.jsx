@@ -1,3 +1,4 @@
+import { API } from "../api";
 import Board from "../components/Board";
 import React, { useReducer, useState } from "react";
 import useInterval from "../components/hooks/useInterval.js";
@@ -25,7 +26,7 @@ const SimulationPage = () => {
   function getSimulationdata() {
     axios({
       method: "post",
-      url: "http://127.0.0.1:8000/simulacion/",
+      url: `${API}/simulacion/`,
       headers: {
         Authorization: `Bearer ${token}`,
         "Access-Control-Allow-Origin": "*",

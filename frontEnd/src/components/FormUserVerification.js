@@ -1,3 +1,4 @@
+import { API } from "../api";
 import {React, useState} from "react";
 import styles from './FormUserVerification.module.css';
 import axios from "axios";
@@ -17,8 +18,8 @@ const VerificationForm = () => {
         codigo:""
     })
 
-    const urlVerify = "http://127.0.0.1:8000/verify_user/"
-    const urlSendMail = "http://127.0.0.1:8000/send_verif_email/"
+    const urlVerify = `${API}/verify_user/`
+    const urlSendMail = `${API}/send_verif_email/`
     const navigate = useNavigate();
 
     var bodyFormData = new FormData();

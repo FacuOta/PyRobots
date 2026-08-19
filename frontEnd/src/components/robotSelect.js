@@ -1,10 +1,11 @@
+import { API } from "../api";
 import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const RobotSelect = (props) => {
 
-    const urlListRobots =  "http://127.0.0.1:8000/get_robots/"
+    const urlListRobots =  `${API}/get_robots/`
     var creador = sessionStorage.getItem('access_token');
     
     const [Robots, SetRobots] = useState([]);

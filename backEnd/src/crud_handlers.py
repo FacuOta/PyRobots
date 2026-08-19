@@ -16,7 +16,7 @@ def add_user(username, email, password):
             return "UsernameNotValid"
 
         if not User.exists(lambda user: user.username == username or user.email == email):
-            User(username = username, email = email, password = password, verif_code = random.randrange(100,999999))
+            User(username = username, email = email, password = password, verif_code = random.randrange(100,999999), is_verified = True)
             return 1
         else:
             return "NonUniqueEmailOrUsername"

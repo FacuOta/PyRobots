@@ -7,6 +7,7 @@ from simulation_helpers import *
 import sys
 sys.path.append('../Robot')
 from Robot import *
+from settings import ruta
 
 def calculate_match(usernameSet, robotNameSet, roundCount, gameCount, is_simulation):
     filename_list = []
@@ -28,7 +29,7 @@ def calculate_match(usernameSet, robotNameSet, roundCount, gameCount, is_simulat
     classList = []
     for f in range(len(filename_list)):
         if not testing:
-            rel_path = '../robot_files/' + filename_list[f]
+            rel_path = ruta('robot_files', filename_list[f])
         else:
             rel_path = '../tests/test_files/' + filename_list[f]
         abs_file_path = os.path.join(script_dir, rel_path)

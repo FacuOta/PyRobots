@@ -1,3 +1,4 @@
+import { API } from "../api";
 import React from "react";
 import { useState } from "react";
 import {
@@ -5,6 +6,7 @@ import {
   Avatar,
   TextField,
   Button,
+  Alert,
 } from "@mui/material";
 import axios from "axios";
 import styles from "./Register.module.css";
@@ -53,7 +55,7 @@ const Register = () => {
     try {
       // Enviamos los datos a la API
       const res = await axios.post(
-        "http://127.0.0.1:8000/register/",
+        `${API}/register/`,
         formData,
         {
           headers: {
@@ -65,7 +67,7 @@ const Register = () => {
       // Enviamos mensaje al usuario
       let mensaje = "";
         if (res.data.detail === "User created") {
-          mensaje = "Los datos fueron confirmados, solo falta la confirmacion de email";
+          mensaje = "Usuario creado exitosamente. Redirigiendo al login...";
         } else if (res.data.detail === "Invalid image") {
           mensaje = "Avatar invalido";
         } else if (res.data.detail === "Invalid password") {
@@ -81,11 +83,15 @@ const Register = () => {
         }
       setErrorMessage(mensaje);
       if (res.data.detail === 'User created') {
-        sleep(1500).then(() => {navigate('/verification')});
+        sleep(1500).then(() => {navigate('/')});
       }
     } catch (e) {
       console.log(e);
-      setErrorMessage(e.response.data.detail);
+      if (e.response && e.response.data && e.response.data.detail) {
+        setErrorMessage(e.response.data.detail);
+      } else {
+        setErrorMessage("Error de conexión con el servidor");
+      }
     }
   };
 
@@ -174,7 +180,9 @@ const Register = () => {
         <br></br>
           Si ya tiene una cuenta <a href="/">Inicie sesión ahora</a>
         <br />
-          Si todavia no verifico su cuenta <a href="/verification"> Pulse aqui </a>
+        <Alert severity="info" sx={{ mt: 2, textAlign: 'left' }}>
+          La verificación por email no está habilitada para proyectos locales. Los usuarios se registran verificados automáticamente.
+        </Alert>
       </form>
     </div>
   );

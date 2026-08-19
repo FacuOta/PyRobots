@@ -1,3 +1,4 @@
+import { API } from "../api";
 import styles from "./Login.module.css"
 import React from "react";
 import Button from '@mui/material/Button';
@@ -23,7 +24,7 @@ const Login = () => {
 
     axios({
       method: "post",
-      url: "http://127.0.0.1:8000/login",
+      url: `${API}/login`,
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" }
     })
@@ -63,7 +64,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)} />
         </div>
         <p hidden={!error} className={styles.loginError}>
-        El usuario y/o la contraseña son incorrectos o la cuenta no esta verificada
+        El usuario y/o la contraseña son incorrectos
         </p>
         <Button className={styles.loginButton} type="submit" variant="contained">Iniciar Sesion</Button>
       </form>
